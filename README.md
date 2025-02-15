@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# [YouTube Clone](https://www.youtube.com/watch?v=ArmPzvHTcfQ)
 
-## Getting Started
+⭐️ Source Code & More: https://dub.sh/xp03EDA
 
-First, run the development server:
+🎬 PART 2: Coming soon
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+💬 Discord & Help: https://www.codewithantonio.com/discord
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🎨 Assets (Free): https://dub.sh/youtube-clone-assets
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Clerk: https://go.clerk.com/4LzhRH5
+- Upstash: https://dub.sh/eiTzkoT
+- Mux: https://mux.com/
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+In this 24 hour tutorial split in 2 parts, you will learn how to create your very own Youtube clone. We will cover advanced topics such as Next 15 and React 19 with tRPC, prefetching in server components, leveraging suspense in client components, video processing, background jobs, AI features, and much more.
 
-## Learn More
+### Key Features:
+- 🎥 Advanced video player with quality controls
+- 🎬 Real-time video processing with Mux
+- 📝 Automatic video transcription
+- 🖼️ Smart thumbnail generation
+- 🤖 AI-powered title and description generation
+- 📊 Creator Studio with metrics
+- 🗂️ Custom playlist management
+- 📱 Responsive design across devices
+- 🔄 Multiple content feeds
+- 💬 Interactive comment system
+- 👍 Like and subscription system
+- 🎯 Watch history tracking
+- 🔐 Authentication system
+- 📦 Module-based architecture
+- 🗄️ PostgreSQL with DrizzleORM
+- 🚀 Next.js 15 & React 19
+- 🔄 tRPC for type-safe APIs
+- 💅 TailwindCSS & ShadcnUI styling
 
-To learn more about Next.js, take a look at the following resources:
+## Project setup
+- Project 생성
+  - `bunx create-next-app@15.1.6`
+  ```bash
+  ✔ What is your project named? … new-tube
+  ✔ Would you like to use TypeScript? … No / Yes
+  ✔ Would you like to use ESLint? … No / Yes
+  ✔ Would you like to use Tailwind CSS? … No / Yes
+  ✔ Would you like your code inside a `src/` directory? … No / Yes
+  ✔ Would you like to use App Router? (recommended) … No / Yes
+  ✔ Would you like to use Turbopack for `next dev`? … No / Yes
+  ✔ Would you like to customize the import alias (`@/*` by default)? … No / Yes
+  ```
+- `shadcn/ui` 설치
+  - `bunx shadcn@latest --version` 버전 확인
+  - `bunx --bun shadcn@2.3.0 init`
+- shadcn ui 전체 추가
+  - `bunx --bun shadcn@2.3.0 add --all`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Basic layout
+## Authentication
+## Database setup
+## Webhook sync
+## TRPC setup
+## TRPC configuration
+## Video categories
+## Studio layout
+## Studio videos
+## Infinite loading
+## Mux integration
+## Mux webhooks
+## Video form
+## Video thumbnails
+## AI background jobs
+## AI thumbnails
+## End of part 1
