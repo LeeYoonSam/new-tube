@@ -94,6 +94,58 @@ In this 24 hour tutorial split in 2 parts, you will learn how to create your ver
 
 
 ## Authentication
+
+### Integrate Clerk
+- Clerk - Application 만들기
+- 디펜던시 추가
+  - `bun add @clerk/nextjs@6.10.3`
+- .env.local 추가
+  - Clerk key 정보 추가
+
+### Add Sign in screens
+- src/app/(auth)/sign-in/[[...sign-in]]/page.tsx 생성
+- src/app/(auth)/sign-up/[[...sign-up]]/page.tsx 생성
+- src/app/(auth)/layout.tsx 생성
+
+### Add UserButton
+- src/modules/auth/ui/componenets/auth-button.tsx 수정
+
+### Add middleware
+- src/middleware.ts 생성
+  - 미들웨어 추가
+
+### Use auth state on sidebar sections
+- src/modules/home/ui/components/home-sidebar/main-section.tsx 수정
+- src/modules/home/ui/components/home-sidebar/personal-section.tsx 수정
+```tsx
+const clerk = useClerk();
+const { isSignedIn } = useAuth();
+
+...
+
+onClick={(e) => {
+  if (!isSignedIn && item.auth) {
+    e.preventDefault();
+    return clerk.openSignIn();
+  }
+}
+```
+- 로그인 여부 및 인증 필요 여부에 따라 clerk SignIn 팝업 표시 처리
+
+### Protect routes
+- src/middleware.ts 수정
+  - createRouteMatcher 를 통해서 Route 보호
+  ```tsx
+  const isProtectedRoute = createRouteMatcher([
+    "/protected(.*)",
+  ]);
+
+  export default clerkMiddleware(async (auth, req) => {
+    if (isProtectedRoute(req)) await auth.protect();
+  });
+  ```
+
+
 ## Database setup
 ## Webhook sync
 ## TRPC setup
