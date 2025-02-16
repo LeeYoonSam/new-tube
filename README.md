@@ -55,6 +55,44 @@ In this 24 hour tutorial split in 2 parts, you will learn how to create your ver
 
 
 ## Basic layout
+- `public/logo.svg` 로고 추가
+- `src/modules` 모듈 기반 폴더 추가
+- `src/modules/home/ui/layout/home-layout.tsx` 생성
+  - css 가 적용되지 않음
+    - `tailwind.config.ts` 수정
+      - content 배열에 새로운 경로 추가
+        - "./src/modules/**/*.{js,ts,jsx,tsx,mdx}",
+  - SidebarProvider 추가
+- `src/modules/home/ui/components/home-navbar/index.tsx` 생성
+  - 홈 네비게이션바 컴포넌트
+  ```tsx
+  <SidebarTrigger />
+  ```
+  - Sidebar 컴포넌트 collapse 자동 적용
+- `src/modules/home/ui/components/home-navbar/search-input.tsx` 생성
+  - 홈 네비게이션바 검색창 컴포넌트
+- `src/modules/auth/ui/componenets/auth-button.tsx` 생성
+  - AuthButton 컴포넌트
+- `src/modules/home/ui/components/home-sidebar/index.tsx` 생성
+  - 홈 사이드바 컴포넌트
+  - 메인 섹션 컴포넌트 추가
+  - 개인 섹션 컴포넌트 추가
+  ```tsx
+  <Sidebar collapsible="icon" />
+  ```
+  - 사이드바 축소할때 icon만 보이도록 설정하는 옵션
+- `src/modules/home/ui/components/home-sidebar/main-section.tsx` 생성
+  - 메인 섹션 컴포넌트
+- `src/modules/home/ui/components/home-sidebar/personal-section.tsx` 생성
+  - 개인 섹션 컴포넌트
+  - SidebarGroupLabel 그룹명 추가
+- src/components/ui/sidebar.tsx 수정
+  - 아이콘 변경
+    - PanelLeft -> MenuIcon
+  - 애니메이션 제거
+    - transition, duration 관련 속성 제거
+
+
 ## Authentication
 ## Database setup
 ## Webhook sync
