@@ -175,6 +175,43 @@ onClick={(e) => {
 
 
 ## Webhook sync
+- Create ngrok account(or any other local tunnel solution)
+- Obtain a static domain(not required, but easier development)
+- Add script to concurrently run local tunnel & app
+- Create the users Webhook
+- Connect the webhook on Clerk dashboard
+
+### Work
+- ngrok 설치
+  - `brew install ngrok`
+- ngrok Domain 실행
+  - `ngrok http --url=national-utterly-beetle.ngrok-free.app 3000`
+- concurrentlry 설치(여러 명령을 동시에 실행)
+  - `bun add concurrently@9.1.2 `
+- `package.json` 수정
+  - `dev:webhook` 스크립트 추가
+    - ngrok http 실행
+  - `dev:all` 스크립트 추가
+    - concurrently 를 사용해서 dev 실행 및 ngrok 동시 실행
+- Clerk Webhooks 설정
+  - Clerk Dashboard > Configure > Webhooks
+  - Add Endpoints
+    - Endpoint URL 입력
+      - ngrok domain: `https://national-utterly-beetle.ngrok-free.app/api/users/webhook`
+    - Subscribe Event : User 전체  선택
+  - Signing Secret 복사
+  - `.env.local` 수정
+    - CLERK_SIGNING_SECRET 추가
+  - [Sync Clerk data to your app with webhooks](https://clerk.com/docs/webhooks/sync-data)
+  - Install `svix`
+    - Clerk는 svix를 사용하여 웹훅을 전달하므로 웹훅 서명을 확인하는 데 사용
+    - bun add svix@1.45.1
+  - src/app/api/users/webhook/route.ts 생성
+    - Clerk 에서 제공하는 webhooks/route.ts 코드 추가
+    - DB 에 유저정보 저장
+      - evt 정보로 users 테이블에 웹훅에서 받은 정보 저장
+
+
 ## TRPC setup
 ## TRPC configuration
 ## Video categories
