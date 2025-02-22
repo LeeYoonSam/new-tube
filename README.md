@@ -147,6 +147,33 @@ onClick={(e) => {
 
 
 ## Database setup
+### Create a PostgreSQL database(www.neon.tech)
+- New Project > Create project
+- .env.local 수정
+  - DATABASE_URL 추가
+
+### Setup DrizzleORM(https://orm.drizzle.team/docs/overview)
+- 디펜던시 추가
+  - bun add drizzle-orm@0.39.0 @neondatabase/serverless@0.10.4 dotenv@16.4.7
+  - bun add -D drizzle-kit@0.30.3 tsx@4.19.2
+
+### Create users schema
+- src/db/index.ts
+  - drizzle db 연결
+- src/db/schema.ts 생성
+  - 유저 스키마 생성
+
+### Migrate changes to database
+### Learn how to use dirzzle-kit
+- `bunx drizzle-kit push` - DB 변경사항 push
+- `bunx drizzle-kit studio` - DB 스튜디오
+
+### Why Drizzle ORM?
+- Only ORM with both relational and SQL-like query APIs
+- Serverless by default
+- Forcing us to "understand" our queries
+
+
 ## Webhook sync
 ## TRPC setup
 ## TRPC configuration
