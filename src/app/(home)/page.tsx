@@ -1,9 +1,15 @@
-import Image from "next/image";
+import { Suspense } from "react";
+import { HydrateClient, trpc } from "../trpc/server";
+import { PageClient } from "./client";
 
-export default function Home() {
+export default async function Home() {
+  void trpc.hello.prefetch ({ text: "Albert" })
+  
   return (
-    <div>
-      I will load videos in the future!
-    </div>
+    <HydrateClient>
+      <Suspense fallback={<p>Loading...</p>}>
+        <PageClient />
+      </Suspense>
+    </HydrateClient>
   );
 }

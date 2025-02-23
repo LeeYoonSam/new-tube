@@ -213,6 +213,59 @@ onClick={(e) => {
 
 
 ## TRPC setup
+### Why tRPC?
+- end-to-end typesafety
+- familiar hooks (useQuery, useMutation etc.)
+- v11 allows us to do authenticated prefetching
+
+### Why prefetch
+- "render as you fetch" concept
+- leverage RSCS as "loaders"
+- faster load time
+- parallel data loading
+
+### Work
+- [tRPC 설정](https://trpc.io/docs/client/react/server-components)
+  1. Install deps
+    - `bun add @trpc/server@11.0.0-rc.802`
+    - `bun add @trpc/client@11.0.0-rc.802`
+    - `bun add @trpc/react-query@11.0.0-rc.802`
+    - `bun add @tanstack/react-query@5.65.1`
+    - `bun add zod client-only server-only`
+  2. Create a tRPC router
+    - `src/app/trpc/init.ts` 생성 및 코드 복사
+    - `src/app/trpc/routers/_app.ts` 생성 및 코드 복사
+    - `src/app/api/trpc/[trpc]/route.ts` 생성 및 코드 복사
+  3. Create a Query Client factory
+    - `src/app/trpc/query-client.ts` 생성 및 코드 복사
+  4. Create a tRPC client for Client Components
+    - `src/app/trpc/client.tsx` 생성 및 코드 복사
+  5. Create a tRPC caller for Server Components
+    - `src/app/trpc/server.tsx` 생성 및 코드 복사
+  6. Using your API
+    - Client Component
+    ```tsx
+    "use client";
+    ...
+    const { data } = trpc.hello.useQuery({ text: "Albert" })
+    ```
+
+    - Server Component
+    ```tsx
+    const data = await trpc.hello ({ text: "Albert" })
+    ```
+
+    - Prefetch
+    ```tsx
+    void trpc.hello.prefetch ({ text: "Albert" })
+
+    // 사용하는 곳
+    const [data] = trpc.hello.useSuspenseQuery({
+      text: "Albert",
+    });
+    ```
+
+
 ## TRPC configuration
 ## Video categories
 ## Studio layout

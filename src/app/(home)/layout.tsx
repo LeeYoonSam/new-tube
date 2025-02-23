@@ -1,4 +1,5 @@
 import { HomeLayout } from "@/modules/home/ui/layout/home-layout";
+import { TRPCProvider } from "../trpc/client";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -7,7 +8,9 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <HomeLayout>
-      {children}
+      <TRPCProvider>
+        {children}
+      </TRPCProvider>
     </HomeLayout>
   );
 };
