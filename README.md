@@ -267,6 +267,34 @@ onClick={(e) => {
 
 
 ## TRPC configuration
+- Enable transformer on tRPC
+- Add auth to tRPC context
+- Add protected Procedure
+- Add reate limiting
+
+### Work
+- tRPC 설정 수정
+  - superjson 활성화
+    - JavaScript 표현식을 날짜, BigInts 등을 포함하는 JSON의 상위 집합으로 안전하게 직렬화
+  - `bun add superjson@2.2.2`
+  - `src/app/trpc/init.ts` 수정
+    - protectedProcedure 추가
+  - `src/app/trpc/query-client.ts` 수정
+  - `src/app/trpc/routers/_app.ts` 수정
+    - protectedProcedure 적용
+- [Upstach](https://upstash.com/) 데이터베이스 설정
+  - Create Database
+  - [Rate Limit Analytics](https://console.upstash.com/ratelimit?teamid=0) 설정
+    - 디펜던시 설치
+      - `bun add @upstash/redis@1.34.3`
+      - `bun add @upstash/ratelimit@2.0.5`
+    - .env.local 수정
+      - Upstash REST URL, Token 추가
+    - Ratelimit 추가
+      - `src/lib/redis.ts` 생성
+      - `src/lib/ratelimit.ts` 생성
+
+
 ## Video categories
 ## Studio layout
 ## Studio videos
