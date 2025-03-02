@@ -1,5 +1,5 @@
 import { HomeLayout } from "@/modules/home/ui/layout/home-layout";
-import { TRPCProvider } from "../trpc/client";
+import { TRPCProvider } from "../../trpc/client";
 
 interface LayoutProps {
   children: React.ReactNode;

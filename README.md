@@ -296,6 +296,36 @@ onClick={(e) => {
 
 
 ## Video categories
+- Create categories schema
+- Push changes to the database
+- Seed categories
+- Organize tRPC routers
+- Prefetch categories
+- Create categories component
+
+### Work
+- `src/db/schema.ts` 수정
+  - 카테고리 스키마 추가
+  - `bunx drizzle-kit push` 스키마 푸시
+  - `bunx drizzle-kit studio` 테이블 생성 확인
+- `src/scripts/seed-categories.ts` 생성
+  - 시드 스크립트 생성
+  - `bun src/scripts/seed-categories.ts` 터미널에서 시드 스크립트 실행시켜서 DB 삽입
+- `src/modules/categories/server/procedures.ts` 생성
+  - categoriesRouter 생성
+- `src/trpc/routers/_app.ts` 수정
+  - categories에 categoriesRouter 추가
+- `src/app/(home)/page.tsx` 수정 
+  - HomeView 컴포넌트 추가
+- `src/modules/home/ui/views/home-view.tsx` 생성
+  - HomeView 컴포넌트
+- `src/modules/home/ui/sections/categories-section.tsx` 생성
+  - CategoriesSection 컴포넌트
+- `src/components/filter-carousel.tsx` 생성
+  - FilterCarousel 컴포넌트
+  - 카테고리별 뱃지 아이템 추가
+
+
 ## Studio layout
 ## Studio videos
 ## Infinite loading
