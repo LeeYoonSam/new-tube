@@ -327,6 +327,39 @@ onClick={(e) => {
 
 
 ## Studio layout
+- Create studio route group
+- Create studio layout
+- Protect studio routes
+
+### Work
+- `src/app/(studio)/studio/page.tsx` 수정
+  - 스튜디오 페이지 추가
+- - src/modules/studio/ui/layouts/studio-layout.tsx 생성
+  - 스튜디오 레이아웃 추가
+- `src/modules/auth/ui/componenets/auth-button.tsx` 수정
+  - UserButton.MenuItems 추가
+- `src/modules/studio/ui/components/studio-navbar/index.tsx` 생성
+  - 스튜디오용 네비게이션바 컴포넌트
+  - StudioUploadModal 컴포넌트 추가
+  - AuthButton 컴포넌트 추가
+- `src/modules/studio/ui/components/studio-sidebar/index.tsx` 생성
+  - 스튜디오용 사이드바 컴포넌트
+  - StudioSidebarHeader 컴포넌트 추가
+  - 사이드바 메뉴 아이템 추가
+- `src/modules/studio/ui/components/studio-sidebar/studio-sidebar-header.tsx` 생성
+  - 스튜디오 사이드바 헤더 컴포넌트
+  - UserAvatar 컴포넌트 추가
+  - 유저 데이터로 정보 표시
+- `src/components/user-avatar.tsx` 생성
+  - 유저 아바타 컴포넌트
+  - VariantProps 를 사용해서 커스텀 속성 생성
+- `src/modules/studio/ui/components/studio-upload-modal.tsx` 생성
+  - StudioUploadModal 컴포넌트
+- src/middleware.ts 수정
+  - 미들웨어 보호
+  - createRouteMatcher 에 `/studio(.*)` 추가
+
+
 ## Studio videos
 ## Infinite loading
 ## Mux integration
