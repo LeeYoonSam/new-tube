@@ -12,6 +12,9 @@ export const metadata: Metadata = {
 import {
   ClerkProvider,
 } from '@clerk/nextjs'
+import { TRPCProvider } from "@/trpc/client";
+import { Toaster } from "sonner";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,7 +26,10 @@ export default function RootLayout({
         <body
           className={inter.className}
         >
-          {children}
+          <TRPCProvider>
+            <Toaster />
+            {children}
+          </TRPCProvider>
         </body>
       </html>
     </ClerkProvider>

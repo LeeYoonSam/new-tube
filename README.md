@@ -213,6 +213,40 @@ onClick={(e) => {
 
 
 ## TRPC setup
+
+### RPC 란?
+RPC는 "원격 프로시저 호출"의 줄임말입니다. 다른 컴퓨터(클라이언트)에서 한 컴퓨터(서버)의 함수를 호출하는 방식입니다. 기존 HTTP/REST API를 사용하면 URL을 호출하고 응답을 받습니다. RPC를 사용하면 함수를 호출하고 응답을 받습니다.
+```ts
+// HTTP/REST
+const res = await fetch('/api/users/1');
+const user = await res.json();
+// RPC
+const user = await api.users.getById({ id: 1 });
+```
+- tRPC(타입스크립트 원격 프로시저 호출)는 타입스크립트 모노레포스를 위해 설계된 RPC의 한 구현입니다. 자체적인 특징이 있지만 핵심은 RPC입니다.
+
+**용어**
+tRPC 생태계에서 자주 사용되는 몇 가지 용어
+
+Term | Description
+--- | ---
+Procedure | API 엔드포인트 - 쿼리, 변경 또는 구독이 될 수 있습니다.
+Query	| 일부 데이터를 가져오는 프로시저입니다.
+Mutation | 일부 데이터를 생성, 업데이트 또는 삭제하는 절차입니다.
+Subscription | 영구 연결을 만들고 변경 사항을 수신하는 프로시저입니다.
+Router | 공유 네임스페이스 아래의 프로시저(및/또는 다른 라우터)의 모음입니다.
+Context | 모든 프로시저가 액세스할 수 있는 항목입니다. 일반적으로 세션 상태 및 데이터베이스 연결과 같은 용도로 사용됩니다.
+Middleware | 프로시저 전후에 코드를 실행할 수 있는 함수입니다. 컨텍스트를 수정할 수 있습니다.
+Validation | "이 입력 데이터에 올바른 내용이 포함되어 있나요?"
+
+### tRPC 소개
+tRPC를 사용하면 스키마나 코드 생성 없이도 완전한 타입 안전 API를 쉽게 빌드하고 사용할 수 있습니다.
+
+웹 개발에서 TypeScript와 정적 타이핑이 점점 더 모범 사례로 자리 잡으면서 API 컨트랙트는 큰 문제점으로 대두되고 있습니다. API 엔드포인트를 정적으로 타이핑하고 클라이언트와 서버(또는 서버 대 서버) 간에 이러한 유형을 공유하는 더 나은 방법이 필요합니다. 저희는 최신 TypeScript의 모든 기능을 활용하는 타입 안전 API를 구축하기 위한 간단한 라이브러리를 구축하기 시작했습니다.
+
+### Who is tRPC for?
+- tRPC는 풀스택 타입스크립트 개발자를 위한 것입니다. 앱의 프론트엔드와 백엔드 모두에서 안전하게 사용할 수 있는 엔드포인트를 쉽게 작성할 수 있습니다. API 컨트랙트의 유형 오류는 빌드 시점에 포착되므로 런타임에 애플리케이션에서 버그가 발생할 여지가 줄어듭니다.
+
 ### Why tRPC?
 - end-to-end typesafety
 - familiar hooks (useQuery, useMutation etc.)
@@ -361,6 +395,42 @@ onClick={(e) => {
 
 
 ## Studio videos
+- Create video schema
+- Push database changes
+- Create studio procedures
+- Add video record creation
+
+### Work
+- `src/db/schema.ts` 수정
+  - videos 스키마 추가
+  - videosRelation 추가
+  - [Drizzle soft relations](https://orm.drizzle.team/docs/relations)
+- dirizzle 스키마 업데이트
+  - `bunx drizzle-kit push`
+- `src/modules/studio/server/procedures.ts` 생성
+  - studioRouter 생성
+  - 데이터 가져오기 (items, nextCursor)
+- `src/trpc/routers/_app.ts` 수정
+  - studioRouter 추가
+- `src/app/(studio)/studio/page.tsx` 수정
+  - trpc HydrateClient 추가
+  - StudioView 컴포넌트 추가
+- `src/modules/studio/ui/view/studio-view.tsx` 생성
+  - 스튜디오뷰 컴포넌트
+  - VideosSection 컴포넌트 추가
+- `src/modules/studio/ui/sections/videos-section.tsx` 생성
+  - 비디오 섹션 컴포넌트
+  - **useSuspenseInfiniteQuery** 사용해서 스튜디오 데이터 무한 갱신
+  - (useSuspenseInfiniteQuery)[https://trpc.io/docs/client/react/suspense#usesuspenseinfinitequery]
+- `src/modules/vidoes/server/procedures.ts` 생성
+  - 비디오 프로시저
+  - create 추가(비디오 추가)
+- `src/constants.ts` 생성
+  - 상수 관리
+- `src/modules/studio/ui/components/studio-upload-modal.tsx` 수정
+  - Create 버튼 클릭시 샘플 데이터 추가
+
+
 ## Infinite loading
 ## Mux integration
 ## Mux webhooks
