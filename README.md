@@ -412,6 +412,7 @@ tRPC를 사용하면 스키마나 코드 생성 없이도 완전한 타입 안�
   - 데이터 가져오기 (items, nextCursor)
 - `src/trpc/routers/_app.ts` 수정
   - studioRouter 추가
+  - videosRouter 추가
 - `src/app/(studio)/studio/page.tsx` 수정
   - trpc HydrateClient 추가
   - StudioView 컴포넌트 추가
@@ -432,6 +433,26 @@ tRPC를 사용하면 스키마나 코드 생성 없이도 완전한 타입 안�
 
 
 ## Infinite loading
+- Add suspense and error boundaries
+- Create reuseable InfiniteScroll component
+- Demonstrate infinite scroll
+
+### Work
+- `src/modules/studio/ui/sections/videos-section.tsx` 수정
+  - Suspense, ErrorBoundary 추가
+  - InfiniteScorll 추가
+  - 비디오 데이터로 테이블 구성
+  - <Link .. legacyBehavior> 사용시 테이블 컬럼에 맞게 데이터가 들어감
+- `src/hooks/use-intersection-observer.ts` 생성
+  - 교차 확인용 옵저버 훅
+- `src/components/infinite-scroll.tsx` 생성
+  - 무한로딩 스크롤 컴포넌트
+  - 수동/자동 로드 기능
+  - **useIntersectionObserver** 혹을 사용해서 다음 페이지 로드
+- `src/modules/studio/ui/view/studio-view.tsx` 수정
+  - 상단 제목 및 설명 부분 추가
+
+
 ## Mux integration
 ## Mux webhooks
 ## Video form
