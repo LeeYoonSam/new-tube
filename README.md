@@ -454,6 +454,60 @@ tRPC를 사용하면 스키마나 코드 생성 없이도 완전한 타입 안�
 
 
 ## Mux integration
+- Create a resposive dialog
+- Create a free Mux account
+  - Credit card NOT required!
+- Get a 15-second video with english audio
+  - https://tinyurl.com/newtube-clip
+- Create upload modal
+
+**Mux free account limitations**
+- Length limit(30s)
+- Video deletion after 24h
+- Mux watermark
+
+### Work
+- `src/components/responsive-modal.tsx` 생성
+  - ResponsiveModal 컴포넌트
+  - 모바일 모드인지 아닌지에 따라 Drawer, Dialog 분기
+- `src/modules/studio/ui/components/studio-upload-modal.tsx` 수정
+  - ResponsiveModal 컴포넌트 추가
+  - mux 업로드 URL 을 사용해서 StudioUploader 에 전달
+- [Mux 설정](#mux-설정)
+- `src/modules/studio/ui/components/studio-uploader.tsx` 생성
+  - MuxUploader 컴포넌트
+- `src/lib/mux.ts` 생성
+  - Mux 를 사용하기 위한 객체 생성
+- `src/modules/vidoes/server/procedures.ts` 수정
+  - mux 비디오 업로드 url 생성
+- `src/db/schema.ts` 수정
+  - videos 테이블 수정
+    - mux 관련 컬럼 추가
+  - `bunx drizzle-kit push` 데이터베이스 변경사항 푸시
+- `Mux Webhooks` 설정
+  - Mux Dashboard > Settings > Webhooks > Environment 선택 > Create new webhook
+  - ngrok 으로 만들어 놓은 url 을 웹훅으로 사용
+    - `https://national-utterly-beetle.ngrok-free.app/api/videos/webhook`
+  - Signing Secret 복사 > MUX_WEBHOOK_SECRET 추가(.env.local)
+- `src/app/api/videos/webhook/route.ts` 생성
+  - 웹훅 API 추가
+  - mux 에서 웹훅으로 이벤트를 받아서 DB 업데이트
+
+
+### [Mux](https://www.mux.com/) integration
+- 회원가입
+- [Environment 추가](https://dashboard.mux.com/organizations/mp0nd6/environments)
+- Environment 생성 > Host and Stream Video
+  - Integrate with your app 진입
+    - Environment 선택 후 퍼미션 전체 추가 후 토큰 생성
+      - Access Token ID, Secret Key 프로젝트에 추가(.evn.local)
+- [Integration Next.js](https://www.mux.com/docs/integrations/next-js)
+  - `bun add @mux/mux-uploader-react` install mux
+    - Mux-flavored React 업로더 컴포넌트로, mux-uploader 웹 컴포넌트
+  - `bun add @mux/mux-node` install mux node
+    - 서버 측 타입스크립트 또는 자바스크립트에서 Mux REST API에 편리하게 액세스
+
+
 ## Mux webhooks
 ## Video form
 ## Video thumbnails
