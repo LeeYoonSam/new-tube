@@ -509,6 +509,48 @@ tRPC를 사용하면 스키마나 코드 생성 없이도 완전한 타입 안�
 
 
 ## Mux webhooks
+- Update video schema
+- Push databaase schanges
+- Handle "video.asset.ready" event
+  - assign thumbnail
+  - assign preview
+- Handle "video.asset.errored" event
+  - update status
+- Handle "video.asset.deleted" event
+  - delete from database
+- Handle "video.asset.track.ready" event
+  - update trackId and trackStatus
+
+### Work
+- `public` 이미지 추가
+  - placeholder.svg
+  - user-placeholder.svg
+- `src/modules/vidoes/ui/components/video-thumbnail.tsx` 생성
+  - 비디오 썸네일 컴포넌트
+  - thumbnail, preview, title 속성
+- `src/modules/studio/ui/sections/videos-section.tsx` 수정
+  - 비디오 썸네일 컴포넌트 추가
+  - 썸네일 테이블 셀 구성
+    - thumbnail, preview, title 로 썸네일 구성
+    - duration 추가
+  - Status 테이블 셀 구성
+  - Date 테이블 셀 구성
+  - Visibility 테이블 셀 구성
+- `src/app/api/videos/webhook/route.ts` 수정
+  - video.asset.ready 웹훅 추가
+  - video.asset.errored 웹훅 추가
+  - video.asset.deleted 웹훅 추가
+  - video.asset.track.ready 웹훅 추가
+- `src/db/schema.ts` video 스키마 수정
+  - thumbnailUrl(jpg) 추가
+  - previewUrl(gif) 추가
+- `next.config.ts` 수정
+  - Error: Invalid src prop (https://image.mux.com/.../thumbnail.jpg) on next/image, hostname "image.mux.com" is not configured under images in your next.config.js
+  - 이미지 리모트 패턴 설정 추가
+- `src/lib/utils.ts` 수정
+  - formatDuration 으로 00:00 으로 duration 표시하도록 포맷 설정
+
+
 ## Video form
 ## Video thumbnails
 ## AI background jobs
