@@ -552,6 +552,42 @@ tRPC를 사용하면 스키마나 코드 생성 없이도 완전한 타입 안�
 
 
 ## Video form
+- Add skeleton to videos-section
+- Create video form page
+- Create video player
+- Add ability to update video information
+  - Title, Description, Category, Visibility
+
+### Work
+- `src/app/(studio)/studio/videos/[videoId]/page.tsx` 생성
+  - 비디오 상세 페이지
+  - prefetch 적용
+    - video
+    - category 
+- `src/modules/studio/ui/sections/videos-section.tsx` 수정
+  - VideosSection 컴포넌트
+  - VideosSectionSkeleton 추가
+  - Suspense fallback 추가
+- `src/modules/studio/ui/views/studio-view.tsx` 생성
+  - VideosSection 컴포넌트 추가
+- `src/modules/studio/ui/views/video-view.tsx` 생성
+  - 비디오뷰 컴포넌트
+  - 폼 섹션 컴포넌트 추가
+- `src/modules/studio/ui/sections/form-section.tsx` 생성
+  - 폼 섹션 컴포넌트
+  - 상단 타이틀, 버튼, 더보기 드롭다운메뉴 추가
+  - trpc 클라이언트로 비디오, 카테고리 정보 획득
+  - Form 추가
+    - 타이틀
+    - 설명
+    - 카테고리
+- `src/db/schema.ts` 수정
+  - drizzle orm 스키마에서 zod 스키마를 생성
+    - **createSelectSchema**, **createInsertSchema**, **createUpdateSchema**
+  - `bun add drizzle-zod`
+    - 드리즐 ORM 스키마에서 zod 스키마를 생성할 수 있는 드리즐 ORM용 플러그인
+
+
 ## Video thumbnails
 ## AI background jobs
 ## AI thumbnails
