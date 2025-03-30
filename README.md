@@ -586,7 +586,19 @@ tRPC를 사용하면 스키마나 코드 생성 없이도 완전한 타입 안�
     - **createSelectSchema**, **createInsertSchema**, **createUpdateSchema**
   - `bun add drizzle-zod`
     - 드리즐 ORM 스키마에서 zod 스키마를 생성할 수 있는 드리즐 ORM용 플러그인
-
+- `src/modules/vidoes/server/procedures.ts` 수정
+  - 비디오 업데이트 프로시저 추가
+  - 비디오 삭제 프로시저 추가
+- `src/modules/vidoes/ui/components/video-player.tsx` 생성
+  - 비디오 플레이어 컴포넌트
+  - mux player 설치
+    - `bun add @mux/mux-player-react`
+  - MuxPlayer 컴포넌트 추가
+- `src/modules/studio/ui/components/studio-upload-modal.tsx` 수정
+  - onSuccess 추가
+    - 업로드시 상세화면으로 바로 이동
+### 주의
+- MUX 에 무료 사용으로 하면 동영상이 자동으로 최대 기간이 지나면 삭제 되기 때문에 다시 업로드해서 테스트 필요
 
 ## Video thumbnails
 ## AI background jobs

@@ -146,7 +146,7 @@ export const VideosSectionSuspense = () => {
                         {video.visibility === "private" ? (
                           <LockIcon className="size-4 mr-2" />
                         ) : (
-                          <Globe2Icon className="siez-4 mr-2" />
+                          <Globe2Icon className="size-4 mr-2" />
                         )}
                         {snakeCaseToTitle(video.visibility)}
                       </div>
