@@ -597,10 +597,55 @@ tRPC를 사용하면 스키마나 코드 생성 없이도 완전한 타입 안�
 - `src/modules/studio/ui/components/studio-upload-modal.tsx` 수정
   - onSuccess 추가
     - 업로드시 상세화면으로 바로 이동
+
 ### 주의
 - MUX 에 무료 사용으로 하면 동영상이 자동으로 최대 기간이 지나면 삭제 되기 때문에 다시 업로드해서 테스트 필요
 
+
 ## Video thumbnails
+- Integrate UploadThing
+- Add thumbnail upload functionality
+- Add thumbnail restore functionality
+- Refactor thumbnail fields in the schema
+  - Proper UploadThing cleanup
+
+### Work
+- `src/modules/studio/ui/sections/form-section.tsx` 수정
+  - 썸네일 영역 추가
+    - 드롭다운 메뉴 추가
+      - 썸네일 업로드 모달 액션 추가
+      - 썸네일 복구 액션 추가
+- `src/modules/vidoes/constants.ts` 수정
+  - 기본 썸네일 상수 추가
+- `src/modules/studio/ui/components/thumbnail-upload-modal.tsx` 생성
+  - 썸네일 업로드 모달 컴포넌트
+- `next.config.ts` 수정
+  - utfs.io 패턴 추가
+- `src/modules/vidoes/server/procedures.ts` 수정
+  - resotreThumbnail 추가
+    - 기본 썸네일 복구
+      - UTApi 를 사용해서 UploadThing 에 업로드한 썸네일 삭제
+- `src/db/schema.ts` 수정
+  - thumbnailKey, previewKey 추가
+  - `bun run drizzle-push` 디비 푸시
+- `src/app/api/uploadthing/core.ts` 수정
+  - thumbnailUploader 수정
+    - thumbnailKey 추가
+    - UTApi 를 사용해서 UploadThing 에 업로드한 썸네일 삭제
+- `src/app/api/videos/webhook/route.ts` 수정
+  - video.asset.ready 시 UTApi 를 통해 파일 업로드 및 key 추가
+
+
+### [UploadThing](https://uploadthing.com/)
+- Create a new app
+- API Keys > Key copy
+- .env.local 에 키 추가
+- npm 설치
+  - [uploadthing docs](https://docs.uploadthing.com/)
+  - `bun add uploadthing @uploadthing/react`
+- `tailwind.config.ts` - withUt 적용
+
+
 ## AI background jobs
 ## AI thumbnails
 ## End of part 1
